@@ -1,21 +1,23 @@
 package com.alperenozil.databindingexercise;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.alperenozil.databindingexercise.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
-    private TextView textViewEmail,textViewName;
+    private ActivityMainBinding activityMainBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textViewEmail=findViewById(R.id.textViewEmail);
-        textViewName=findViewById(R.id.textViewName);
 
-        textViewName.setText(getStudent().getName());
-        textViewEmail.setText(getStudent().getEmail());
+        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        activityMainBinding.setStudent(getStudent());
+
     }
 
     public Student getStudent(){
